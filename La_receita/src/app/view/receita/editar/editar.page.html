@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <img src="https://www.pngitem.com/pimgs/m/232-2324720_ratatouille-png-transparent-ratatouille-clipart-png-download.png" alt="Descrição da imagem" style="width: 40px; height:30px; filter: invert(90%);">
+      La Receita
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item>
+      <ion-input label="Nome" placeholder="Insira o nome" [(ngModel)]="nome"></ion-input>
+    </ion-item>
+    <ion-item *ngFor="let ingrediente of ingredientes; let i = index">
+      {{ ingrediente }}
+      <ion-button (click)="removerIngrediente(i)">Remover</ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-input label="ingrediente" placeholder="Insira o igrediente" [(ngModel)]="novoIngrediente"></ion-input>
+    </ion-item>
+    <ion-button expand="full" (click)="adicionarIngrediente()">Adicionar Ingrediente</ion-button>
+    <ion-item>
+      <ion-textarea type="textarea" label="preparo" placeholder="descreva o preparo" [(ngModel)]="preparo"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-textarea label="historia" placeholder="conte um pouco a historia da receita" [(ngModel)]="historia"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-input label="criador" placeholder="nome de quem criou areceita" [(ngModel)]="criador"></ion-input>
+    </ion-item>
+    <ion-item>
+        <input type="file" (change)="adicioneImagem($event)">
+        <ion-img [src]="image" *ngIf="image"></ion-img>
+    </ion-item>
+    <ion-item>
+      <ion-select label="tipo" [(ngModel)]="tipo">
+        <ion-select-option value="0" aria-selected="true">Salgado</ion-select-option>
+        <ion-select-option value="1">Doce</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" (click)="editar()">Salvar</ion-button>
+  <ion-button expand="full" (click)="detalhes(receita)">Cancelar</ion-button>
+
+</ion-content>

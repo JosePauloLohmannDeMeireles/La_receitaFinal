@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <img src="https://www.pngitem.com/pimgs/m/232-2324720_ratatouille-png-transparent-ratatouille-clipart-png-download.png" style="width: 40px; height:30px;">
+      La Receita
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-searchbar (ionInput)="filtrarReceitas($event)"></ion-searchbar>
+  <ion-list class="receitas" *ngFor="let receita of receitasFiltradas;">
+    <ion-item (click)="editar(receita)">
+      <div *ngIf="receita.image; else semFoto">
+        <img src="{{ receita.image }}" alt="">
+      </div>
+      <ng-template #semFoto>
+        <img src="https://www.pngitem.com/pimgs/m/232-2324720_ratatouille-png-transparent-ratatouille-clipart-png-download.png" alt="">
+      </ng-template>
+      <h1>{{ receita.nome }}</h1>
+      <img *ngIf="receita.tipo == 1" class="icon" src="https://cdn-icons-png.flaticon.com/512/3038/3038413.png" alt="">
+      <img *ngIf="receita.tipo == 0" class="icon" src="https://cdn-icons-png.flaticon.com/512/2933/2933110.png" alt="">
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-fab horizontal="end" vertical="bottom">
+  <ion-fab-button [routerLink]="['/cadastrar']">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

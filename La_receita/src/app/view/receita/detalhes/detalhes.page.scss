@@ -1,0 +1,32 @@
+p {
+    margin-left: 1em; 
+    font-family: 'Roboto'
+}
+
+.imagem-borda {
+    width: 400px;
+}
+
+.imagem-borda img {
+    width: 90%; 
+    border-radius: 8%; 
+    border: 8px solid #aa982f; 
+}
+
+.nome-meio{
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Roboto'
+}
+
+h1, h2, h3 {
+    font-family: 'Roboto', sans-serif; 
+}
+
+hr {
+    padding: 2px; 
+    border: 2px solid #333; 
+    border-radius: 10px; 
+    background-color: #f8f8f8; 
+}
+
