@@ -62,6 +62,19 @@ logar!: FormGroup;
       console.log(error); })
   }
 
+  logarComGit() {
+    this.auth.logarComGit()
+      .then((res) => {
+        this.alert.presentAlert("OK", "Logado com o GitHub!");
+        this.router.navigate(['home']);
+      })
+      .catch((error) => {
+        this.alert.presentAlert("OK", "Erro ao Logar com o GitHub! Tente Novamente");
+        console.log(error);
+      });
+  }
+
+
   irParaRegistrar(){
     this.router.navigate(["/registrar"]);
   }

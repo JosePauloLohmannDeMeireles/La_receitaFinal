@@ -79,7 +79,7 @@ export class EditarPage implements OnInit {
         })
       }
     }else{
-      this.presentAlert("Erro", "Nome e Telefone são campos Obrigatórios!");
+      this.presentAlert("Erro", "Nome, Ingredientes e Preparo são campos obrigatórios!");
     }
   }
 

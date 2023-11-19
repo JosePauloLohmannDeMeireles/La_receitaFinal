@@ -3,7 +3,7 @@ import { FirebaseService } from './firebase.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { getAuth, signInWithPopup, browserPopupRedirectResolver,
-GoogleAuthProvider} from 'firebase/auth'; // npm i -g firebase --save
+GoogleAuthProvider, GithubAuthProvider} from 'firebase/auth'; // npm i -g firebase --save
 import { Usuario } from '../entities/Usuario';
 
 
@@ -58,6 +58,12 @@ export class AuthService {
 
      public logarComGoogle(){
       const provider = new GoogleAuthProvider();
+      const auth = getAuth();
+      return signInWithPopup(auth, provider, browserPopupRedirectResolver);
+     }
+
+     logarComGit() {
+      const provider = new GithubAuthProvider();
       const auth = getAuth();
       return signInWithPopup(auth, provider, browserPopupRedirectResolver);
      }
