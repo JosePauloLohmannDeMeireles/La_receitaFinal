@@ -10,7 +10,7 @@ import { FirebaseService } from 'src/app/model/services/firebase.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage  implements OnInit{
+export class HomePage{
   public listaDeReceitas : Receita[] = [];
   receitasFiltradas: Receita[] = [];
 
@@ -36,10 +36,6 @@ export class HomePage  implements OnInit{
 
   editar(receita :  Receita){
     this.router.navigateByUrl("/detalhes", {state : { receita: receita}});
-  }
-
-  ngOnInit() {
-    this.receitasFiltradas = [...this.listaDeReceitas];
   }
 
   ionViewWillEnter() {
