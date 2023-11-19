@@ -41,7 +41,7 @@ export class CadastrarPage implements OnInit {
       let novo: Receita = new Receita(this.nome, this.ingredientes, this.preparo);
       novo.preparo = this.preparo;
       novo.historia = this.historia;
-      novo.tipo = this.tipo;
+      novo.tipo = this.tipo? this.tipo : 0;
       novo.criador = this.criador;
       novo.uid = this.user?.uid;
   
