@@ -11,8 +11,8 @@
   <ion-searchbar (ionInput)="filtrarReceitas($event)"></ion-searchbar>
   <ion-list class="receitas" *ngFor="let receita of receitasFiltradas;">
     <ion-item (click)="editar(receita)">
-      <div *ngIf="receita.image; else semFoto">
-        <img src="{{ receita.image }}" alt="">
+      <div *ngIf="receita.downloadURL; else semFoto">
+        <img src="{{ receita.downloadURL }}" alt="">
       </div>
       <ng-template #semFoto>
         <img src="https://www.pngitem.com/pimgs/m/232-2324720_ratatouille-png-transparent-ratatouille-clipart-png-download.png" alt="">

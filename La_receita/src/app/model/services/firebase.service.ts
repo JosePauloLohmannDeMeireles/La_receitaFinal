@@ -31,7 +31,7 @@ export class FirebaseService {
     return this.firestore.collection(this.PATH)
     .add({nome : receita.nome, ingrediente: receita.ingrediente,
       preparo: receita.preparo, tipo : receita.tipo,
-      downloadURL : receita.image, criador : receita.criador 
+      downloadURL : receita.downloadURL, criador : receita.criador 
       ,uid : receita.uid ,historia: receita.historia});
   }
 
@@ -39,7 +39,7 @@ export class FirebaseService {
     return this.firestore.collection(this.PATH).doc(id)
     .update({nome : receita.nome, ingrediente: receita.ingrediente,
       preparo: receita.preparo, tipo : receita.tipo,
-      downloadURL : receita.image, criador : receita.criador 
+      downloadURL : receita.downloadURL, criador : receita.criador 
       ,uid : receita.uid ,historia: receita.historia});
   }
 
@@ -50,8 +50,9 @@ export class FirebaseService {
   }
 
   uploadImage(imagem: any, receita: Receita){
+    console.log(imagem);
+    const file = imagem.item(0);
     
-    const file = imagem;
     if(file.type.split('/')[0] !== 'image'){
       console.error("Tipo Não Suportado");
       return;
@@ -62,8 +63,9 @@ export class FirebaseService {
     task.snapshotChanges().pipe(
       finalize(()=>{
         let uploadFileURL = fileRef.getDownloadURL();
+        
         uploadFileURL.subscribe(resp => {
-          receita.image = resp;
+          receita.downloadURL = resp;
           if(!receita.id){
             this.cadastrar(receita);
           }else{

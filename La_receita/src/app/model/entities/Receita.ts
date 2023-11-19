@@ -5,7 +5,7 @@ export class Receita{
  private _preparo!: string;
  private _criador!: string;
  private _tipo!: number;
- private _image!: any;
+ private _downloadURL!: any;
  private _uid! : string;
  private _historia!: string;
 
@@ -31,11 +31,11 @@ export class Receita{
     this._nome = nome;
   }
 
-  public get image(): any {
-    return this._image;
+  public get downloadURL(): any {
+    return this._downloadURL;
   }
-  public set image(image: any) {
-      this._image = image;
+  public set downloadURL(downloadURL: any) {
+      this._downloadURL = downloadURL;
   }
 
   //criador

@@ -39,22 +39,9 @@ export class DetalhesPage implements OnInit {
     this.preparo = this.receita.preparo;
     this.criador = this.receita.criador;
     this.tipo = this.receita.tipo;
-    this.image = this.receita.image;
+    this.image = this.receita.downloadURL;
     this.historia = this.receita.historia;
-    this.image = this.receita.image;
     this.ingrediente = this.receita.ingrediente;
-  }
-
-  habilitar(){
-    if(this.edicao){
-      this.edicao = false;
-    }else{
-      this.edicao = true;
-    }
-  }
-
-  uploadFile(imagem: any){
-    this.image = imagem.files;
   }
 
   excluir(){
@@ -94,29 +81,6 @@ export class DetalhesPage implements OnInit {
       ],
     });
     await alert.present();
-  }
-
-  adicioneImagem(event: any) {
-    const file = event.target.files[0];
-  
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.image = reader.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-
-  adicionarIngrediente() {
-    if (this.novoIngrediente.trim() !== '') {
-      this.ingredientes.push(this.novoIngrediente);
-      this.novoIngrediente = ''; // Limpa o campo de entrada
-    }
-  }
-
-  removerIngrediente(index: number) {
-    this.ingredientes.splice(index, 1);
   }
 
   editar(receita :  Receita){

@@ -17,6 +17,7 @@ export class EditarPage implements OnInit {
   criador! : string;
   tipo!: number;
   image! : any;
+  imagem! : any;
   receita! : Receita;
   edicao: boolean = true;
   user : any;
@@ -37,9 +38,9 @@ export class EditarPage implements OnInit {
     this.nome = this.receita.nome;
     this.ingrediente = this.receita.ingrediente;
     this.preparo = this.receita.preparo;
+    this.imagem = this.receita.downloadURL;
     this.criador = this.receita.criador;
     this.tipo = this.receita.tipo;
-    this.image = this.receita.image;
     this.historia = this.receita.historia;
     this.ingredientes = this.receita.ingrediente;
   }
@@ -62,12 +63,14 @@ export class EditarPage implements OnInit {
       novo.preparo = this.preparo;
       novo.tipo = this.tipo;
       novo.id = this.receita.id;
+      novo.criador = this.criador;
+      novo.historia = this.historia
       novo.uid = this.user.uid;
       if(this.image){
         this.firebase.uploadImage(this.image, novo)
         ?.then(()=>{this.router.navigate(["/home"]);})
       }else{
-        novo.image = this.receita.image;
+        novo.downloadURL = this.receita.downloadURL? this.receita.downloadURL : null;
         this.firebase.editar(novo, this.receita.id)
         .then(()=>{this.router.navigate(["/home"]);})
         .catch((error)=>{
@@ -98,7 +101,7 @@ export class EditarPage implements OnInit {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        this.image = reader.result;
+        this.imagem = reader.result;
       };
       reader.readAsDataURL(file);
     }

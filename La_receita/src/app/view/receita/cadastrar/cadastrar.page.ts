@@ -17,8 +17,8 @@ export class CadastrarPage implements OnInit {
   public criador! : string;
   public tipo!: number;
   public image! : any;
+  public imagem! : any;
   public receita! : Receita;
-  public edicao: boolean = true;
   public historia! : string;
   public novoIngrediente: string = '';
   public ingredientes: string[] = [];
@@ -40,17 +40,19 @@ export class CadastrarPage implements OnInit {
     if (this.nome && this.ingredientes && this.preparo) {
       let novo: Receita = new Receita(this.nome, this.ingredientes, this.preparo);
       novo.preparo = this.preparo;
+      novo.historia = this.historia;
       novo.tipo = this.tipo;
-      novo.uid = this.user?.uid; // Certifique-se de que this.user não seja undefined
+      novo.criador = this.criador;
+      novo.uid = this.user?.uid;
   
       if(this.image){
         this.firebase.uploadImage(this.image, novo)
         ?.then(()=>{this.router.navigate(["/home"]);})
       }else{
-        novo.image = this.receita.image;
-        this.firebase.editar(novo, this.receita.id)
-        .then(()=>{this.router.navigate(["/home"]);})
-        .catch((error)=>{
+        novo.downloadURL = null;
+        this.firebase.cadastrar(novo)
+        .then(() =>  this.router.navigate(["/home"]))
+        .catch((error) => {
           console.log(error);
           this.presentAlert("Erro", "Erro ao Atualizar Receita!");
         })
@@ -76,10 +78,11 @@ export class CadastrarPage implements OnInit {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        this.image = reader.result;
+        this.imagem = reader.result;
       };
       reader.readAsDataURL(file);
     }
+    this.uploadFile(event.target);
   }
 
   adicionarIngrediente() {

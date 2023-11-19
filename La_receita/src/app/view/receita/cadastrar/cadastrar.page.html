@@ -30,8 +30,8 @@
       <ion-input label="criador" placeholder="nome de quem criou areceita" [(ngModel)]="criador"></ion-input>
     </ion-item>
     <ion-item>
-        <input type="file" (change)="adicioneImagem($event)">
-        <ion-img [src]="image" *ngIf="image"></ion-img>
+        <input type="file" (change)="adicioneImagem($event)" (change)="uploadFile($event.target)">
+        <ion-img [src]="imagem" *ngIf="imagem"></ion-img>
     </ion-item>
     <ion-item>
       <ion-select label="tipo" [(ngModel)]="tipo">
