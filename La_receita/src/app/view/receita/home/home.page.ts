@@ -28,7 +28,11 @@ export class HomePage{
           }as Receita
         })
       })
-    }
+  }
+
+  ngOnInit() {
+    this.receitasFiltradas =  [...this.listaDeReceitas];
+  }
 
   irParaCadastrar(){
     this.router.navigate(["/cadastrar"]);
